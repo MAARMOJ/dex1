@@ -1,0 +1,52 @@
+Slip 24
+Q1) Create an abstract class 'Bank' with an abstract method 'getBalance'. Rs.100, Rs.150 and Rs.200 are deposited in banks A, B and C respectively. 'BankA', 'BankB' and 'BankC' are subclasses of class 'Bank', each having a method named 'getBalance'. Call this method by creating an object of each of the three classes.
+abstract class Bank{
+   public abstract void getBalance();
+}
+class BankA extends Bank{
+   public void getBalance(){ System.out.println("Deposited Balance is = $100"); }
+}
+//Written and logic by Avtar Singh (Singha2k2)
+class BankB extends Bank{
+   public void getBalance(){ System.out.println("Deposited Balance is = $150"); }
+}
+class BankC extends Bank{
+    public void getBalance(){ System.out.println("Deposited Balance is = $200"); }
+}
+class calculateBalance{
+public static void main(String[] args){
+   BankA Balance1 = new BankA();
+   Balance1.getBalance();
+   BankB Balance2 = new BankB();
+   Balance2.getBalance();
+   BankC Balance3 = new BankC();
+   Balance3.getBalance();
+   }
+}
+Q2) Program that displays three concentric circles where ever the user clicks the mouse on a frame.
+ The program must exit when user clicks ‘X’ on the frame
+#include<stdio.h>
+#include<graphics.h>
+#include<conio.h>
+ 
+int main(){
+   int gd = DETECT,gm;
+   int x ,y;
+   initgraph(&gd, &gm, "C:\\TC\\BGI");
+   /* Initialize center of circle with center of screen */
+   x = getmaxx()/2;
+   y = getmaxy()/2;
+    outtextxy(240, 50, "Concentric Circles");
+   /* Draw circles on screen */
+   setcolor(RED);
+   circle(x, y, 30);
+   setcolor(GREEN);
+   circle(x, y, 50);
+   setcolor(YELLOW);
+   circle(x, y, 70);
+   setcolor(BLUE);
+   circle(x, y, 90);
+    getch();
+   closegraph();
+   return 0;
+}
