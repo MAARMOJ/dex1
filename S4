@@ -1,0 +1,153 @@
+Slip 4
+Q1) Write a program to print an array after changing the rows and columns of a given 
+ two-dimensional array.
+
+import java.util.Scanner;
+public class Transpose
+{
+    public static void main(String args[])  
+    {
+	int i, j;
+	System.out.println("Enter total rows and columns: ");
+	Scanner s = new Scanner(System.in);
+	int row = s.nextInt();
+	int column = s.nextInt();
+	int array[][] = new int[row][column];
+	System.out.println("Enter matrix:");
+ 	for(i = 0; i < row; i++)
+  	{
+   	    for(j = 0; j < column; j++) 
+     	    {
+        	array[i][j] = s.nextInt();
+        	System.out.print(" ");
+            }
+  	}
+	System.out.println("The above matrix before Transpose is ");
+  	for(i = 0; i < row; i++)
+    	{
+      	    for(j = 0; j < column; j++)
+            {
+          	System.out.print(array[i][j]+" ");
+            }
+            System.out.println(" ");
+        }
+ 	System.out.println("The above matrix after Transpose is ");
+  	for(i = 0; i < column; i++)
+    	{
+      	    for(j = 0; j < row; j++)
+            {
+                System.out.print(array[j][i]+" ");
+            }
+            System.out.println(" ");
+        }
+    }
+}
+Output:
+$ javac Transpose.java
+$ java Transpose
+ 
+Enter total rows and columns: 
+3 3
+Enter matrix:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+The above matrix before Transpose is 
+1 2 3  
+4 5 6  
+7 8 9  
+The above matrix after Transpose is 
+1 4 7  
+2 5 8  
+3 6 9
+
+Q2) Write a program to design a screen using Awt that will take a user name and password. If the user name and password are not same, raise an Exception with appropriate message. User can have 3 login chances only. Use clear button to clear the TextFields.
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+class InvalidPasswordException extends Exception
+{
+}
+class Slip4 extends JFrame implements ActionListener
+{
+    JLabel name, pass;
+    JTextField nameText;
+    JPasswordField passText;
+    JButton login, end;
+    static int cnt=0;
+        Slip4()
+    {
+         name = new JLabel("Name : ");
+         pass = new JLabel("Password : ");
+         nameText = new JTextField(20);
+         passText = new JPasswordField(20);
+         login = new JButton("Login");
+         end = new JButton("End");
+         login.addActionListener(this);
+          end.addActionListener(this);              
+                              setLayout(new GridLayout(3,2));
+          add(name);
+          add(nameText);
+          add(pass);
+          add(passText);
+          add(login);
+          add(end);
+          setTitle("Login Check");
+          setSize(300,300);    
+  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+          setVisible(true);
+     }
+     public void actionPerformed(ActionEvent e)
+     {
+               if(e.getSource()==end)
+          {
+                        System.exit(0);
+   
+          }
+          if(e.getSource()==login)
+          {
+             try
+             {
+                 String user = nameText.getText();
+                 String pass = new String(passText.getPassword());
+                                   if(user.compareTo(pass)==0)
+                 {  
+JOptionPane.showMessageDialog(null,"Login Successful","Login",JOptionPane.INFORMATION_MESSAGE);
+                     System.exit(0);
+System.out.println("login successful");
+                  }
+                  else
+                  {
+                      throw new InvalidPasswordException();
+                  }
+                }
+                catch(Exception e1)
+                {
+                    
+           cnt++;
+                    JOptionPane.showMessageDialog(null,"Login Failed","Login",JOptionPane.ERROR_MESSAGE);
+                     nameText.setText("");
+                     passText.setText("");
+                     nameText.requestFocus();
+                     if(cnt == 3)
+                    {
+           JOptionPane.showMessageDialog(null,"3 AttemptsOver","Login",JOptionPane.ERROR_MESSAGE);
+                        System.exit(0); 
+ }       
+         }               
+   }
+}
+  public static void main(String args[])
+ {
+                new Slip4();
+ }
+}
+
+                                  
