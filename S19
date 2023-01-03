@@ -1,0 +1,102 @@
+Slip 19
+Q.1]Write a program to accept the two dimensional array from user and display sum of its diagonal elements.
+public class Main {
+
+  public static void main(String[] args) {
+    int[][] dataset = {{1, 5, 8},
+		{4, 3, 1},
+		{6, 5, 2}};
+
+    System.out.println("Diagonal sum is " + DiagonalSum(dataset));
+  }
+
+  /**
+  * Calculate the sum of diagonal elements.
+  * @param a : 2-D array.
+  * @return sum of diagonal elements.
+  */
+  private static int DiagonalSum(int[][] a) {
+    int sum = 0;
+    for (int i = 0; i < a.length; i++)
+      for (int j = 0; j < a[0].length; j++) {
+         // Check for main diagonal element.
+         if (i == j) {
+            sum += a[i][j];
+         }
+        
+         // Check for secondary diagonal element.
+         if (i + j == a.length - 1) {
+            sum += a[i][j];
+         }
+       }
+     return sum;
+    }
+
+}
+Q2) Write a program which shows the combo box which includes list of T.Y.B.Sc.(Comp. Sci) subjects. Display the selected subject in a text field.
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.io.*;
+class ComboBox_Demo extends JFrame
+{     
+JFrame frame = new JFrame(" ");     
+JComboBox cb1, cb2;     
+JTextField txtsub;     
+Container cc;     
+JLabel lblsub, sub;     
+public ComboBox_Demo()     
+{          
+super(" COMBO LIST");          
+txtsub = new JTextField(20);          
+cb1 = new JComboBox();          
+lblsub = new JLabel(" SELECT SUBJECT:");          
+sub= new JLabel(" SUBJECT NAME:");          
+cc = getContentPane();          
+cc.setLayout(null);          
+cc.add(lblsub);          
+cc.add(cb1);          
+cc.add(txtsub);          
+cc.add(sub);          
+setSize(500,300);          
+setLocation(0,0);          
+setResizable(false);          
+setLayout(null);          
+cc.setBackground(Color.pink);             
+setVisible(true);          
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);          
+lblsub.setBounds(50,50,250,40);          
+cb1.setBounds(170,50,250,35);          
+sub.setBounds(50,150,250,40);          
+txtsub.setBounds(170,150,250,35);
+cb1.addItem("OPERATING SYSTEM");         
+cb1.addItem("THEORATICAL COMPUTER SCIENCE");          
+cb1.addItem("NETWORKING");          
+cb1.addItem("INTERNET PROGRAMMING");          
+cb1.addItem("PROGRAMMING IN JAVA I");          
+cb1.addItem("BLOCKCHAIN");          
+cb1.addItem("PYTHON");
+cb1.addItemListener(new ItemListener()          
+{               
+public void itemStateChanged(ItemEvent event)               
+{                    
+if (event.getStateChange() == ItemEvent.SELECTED)                    
+{                         
+try                         
+{                              
+String no=cb1.getSelectedItem().toString();                              
+txtsub.setText(no);                         
+}                         
+catch (Exception ex)                         
+{                              
+ex.printStackTrace();                         
+}                    
+}               
+}          
+});     
+}     
+public static void main(String[] args)     
+{          
+new ComboBox_Demo();     
+}
+}
