@@ -1,0 +1,222 @@
+Slip 14
+Q.1]Write a program to accept a number from the user, if number is zero then throw user defined 
+ exception “Number is 0” otherwise check whether no is prime or not (Use static keyword).
+
+import java.io.*;
+class NumberZeroException extends Exception
+{
+    public String toString()
+    {
+        return("Number is 0");
+    }
+}
+
+class PrimeNumber
+{
+    static int no;
+    BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+    PrimeNumber()
+    {
+        try
+        {
+            System.out.println("Enter any integer to check prime ");
+            no=Integer.parseInt(br.readLine());
+            if(no==0)
+                throw new NumberZeroException();
+        }
+        catch(NumberZeroException ex)
+        {
+            System.out.println(ex);
+        }
+        catch(IOException ex1)
+        {
+            System.out.println("Enter proper number");
+        }
+    }
+
+    public void prime()
+    {
+        int cnt=0;
+        for(int i=2;i<=no/2;i++)
+            if(no%i==0)
+            {
+                cnt++;
+                break;
+            }
+        if(cnt==0)
+            System.out.println(a+" Number is prime");
+        else
+            System.out.println(a+" Number is not prime");
+    }
+    public static void main(String args[])
+    {
+        PrimeNumber pn=new PrimeNumber();
+        pn.prime();
+    }
+}
+Q2) Write a Java program to create a Package “SY” which has a class SYMarks (members –
+ ComputerTotal, MathsTotal, and ElectronicsTotal). Create another package TY which has a
+ class TYMarks (members – Theory, Practicals). Create ‘n’ objects of Student class (having
+ rollNumber, name, SYMarks and TYMarks). Add the marks of SY and TY computer subjects
+ and calculate the Grade (‘A’ for >= 70, ‘B’ for >= 60 ‘C’ for >= 50, Pass Class for > =40 
+ else‘FAIL’) and display the result of the student in proper format.
+
+package SY;
+public class symark
+{
+        int ct,mt,et;
+        public symark()
+        {
+                ct=0;mt=0;et=0;
+        }
+        public symark(int c,int m,int e)
+        {
+                this.ct=c;
+                this.mt=m;
+                this.et=e;
+        }
+	
+}
+
+
+package ty
+
+package TY;
+public class tymark
+{
+        int tt,pt;
+        public tymark()
+        {
+                tt=0;pt=0;
+        }
+        public tymark(int t,int p)
+        {
+                this.tt=t;
+                this.pt=p;
+        }
+}
+
+
+
+prog
+import java.io.*;
+import SY.symark;
+import TY.tymark;
+
+public class set2b2
+{
+        private int rno;
+        private String name;
+        private symark sy1;
+        private tymark ty1;
+        private String grade;
+
+        public set2b2()
+        {
+                rno=0;
+                name="";
+                sy1=new symark();
+                ty1=new tymark();
+                grade="";
+        }
+        public set2b2(int r,String na,int ct1,int mt1,int et1,int t1,int p,String g)
+        {
+                rno=r;
+                name=na;
+                sy1=new symark(ct1,mt1,et1);
+                ty1=new tymark(t1,p);
+                grade=g;
+
+        }
+        public void display(int ct1,int mt1,int et1,int t1,int p,String g)
+        {
+                System.out.println("roll no\t"+rno);
+                System.out.println("name\t"+name);
+                System.out.println("total of computer for sy:  "+ct1);
+                System.out.println("total of maths for sy:  "+mt1);
+                System.out.println("total of electronic for sy:  "+et1);
+                System.out.println("total of theory for ty:  "+t1);
+                System.out.println("total of practicals for ty:  "+p);
+                System.out.println("grade:\n"+g);
+        }
+
+public static void main(String args[]) throws IOException
+        {
+                String g;
+                BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("How many records to be created:");
+                int n=Integer.parseInt(br.readLine());
+                set2b2 s[]=new set2b2[n+1];
+                for(int i=0;i<n;i++)
+                {
+System.out.println("Enter details of record no.:"+(i+1));
+                        System.out.println("Roll Number:");
+                        int r=Integer.parseInt(br.readLine());
+                        System.out.println("Name:");
+                        String na=br.readLine();
+                        System.out.println("Computer Total of SY:");
+                        int ct1=Integer.parseInt(br.readLine());
+                        System.out.println("Maths Total of SY:");
+                        int mt1=Integer.parseInt(br.readLine());
+                        System.out.println("Electronics Total of SY:");
+                        int et1=Integer.parseInt(br.readLine());
+                        System.out.println("Theory Total of TY:");
+                        int t1=Integer.parseInt(br.readLine());
+                        System.out.println("Practical Total of TY");
+                        int p=Integer.parseInt(br.readLine());
+                        double avg=((ct1+mt1+et1+t1+p)/5);
+                        if (avg>=70.0)
+                                g="A";
+                        else if(avg<70.0 && avg>=60.0)
+                                g="B";
+                        else if(avg<60.0 && avg>=50.0)
+                                g="C";
+                        else if(avg<50.0 && avg>=40.0)
+                                g="Pass Class";
+                        else
+                                g="Fail";
+                     	s[i]=new set2b2(r,na,ct1,mt1,et1,t1,p,g);
+                        s[i].display(ct1,mt1,et1,t1,p,g);
+                }
+        }
+}
+/*
+OUTPUT =
+How many records to be created:
+2
+Enter details of record no.:1
+Roll Number:
+509
+Name:
+NADAF
+Computer Total of SY:
+89
+Maths Total of SY:
+75
+Electronics Total of SY:
+74
+Theory Total of TY:
+222
+Practical Total of TY
+247
+roll no	509
+name	NADAF
+total of computer for sy:  89
+total of maths for sy:  75
+total of electronic for sy:  74
+total of theory for ty:  222
+total of practicals for ty:  247
+grade:
+A
+Enter details of record no.:2
+Roll Number:
+506
+name	MALI
+total of computer for sy:  90
+total of maths for sy:  58
+total of electronic for sy:  76
+total of theory for ty:  216
+total of practicals for ty:  220
+grade:
+A
+*/
