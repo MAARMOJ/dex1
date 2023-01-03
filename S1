@@ -1,0 +1,86 @@
+Slip 1
+
+Q1) Write a Program to print all Prime numbers in an array of ‘n’ elements. (use command line arguments)
+
+import java.util.Scanner;
+public class PrimeNumbers
+{
+public static void main (String[] args){
+    int[] array = new int [20];
+   int n=Integer.parseInt(args[0]);
+    Scanner in = new Scanner (System.in);
+    System.out.println("Enter the elements of the array: ");
+    for(int i=0; i<n; i++)
+    {
+        array[i] = in.nextInt();
+    }
+    for(int i=0; i<n; i++){
+        boolean isPrime = true;
+        for (int j=2; j<i; j++){
+            if(i%j==0){
+                isPrime = false;
+                break;
+            }
+        }
+        if(isPrime)
+            System.out.println(i + " are the prime numbers in the array ");
+    }
+}
+}
+
+
+
+Q2) Define an abstract class Staff with protected members id and name. Define a parameterized constructor. Define one subclass OfficeStaff with member department. Create n objects of OfficeStaff and display all detail
+
+import java.io.*;
+
+abstract class Staff
+{
+String name,id;
+}
+class OfficeStaff extends Staff
+{
+String department;
+double salary;
+public void accept() throws IOException
+{
+System.out.println("Enter the name, id, department and salary: ");
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+name=br.readLine();
+id=br.readLine();
+department=br.readLine();
+salary=Double.parseDouble(br.readLine());
+}
+public void display(){
+
+System.out.println("Name: "+name);
+System.out.println("Address: "+id);
+System.out.println("Department: "+department);
+System.out.println("Salary: "+salary);
+System.out.println("----------------------");
+}
+}
+public class StaffInfo
+ {
+public static void main(String [] args) throws IOException
+{
+int i;
+BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+System.out.println("Office Staff Information");
+System.out.println("Enter the number of Staff: ");
+int n=Integer.parseInt(br.readLine());
+OfficeStaff [] l=new OfficeStaff[n];
+for(i=0;i<n;i++)
+{
+l[i]=new OfficeStaff();
+l[i].accept();
+}
+for(i=0;i<n;i++)
+{
+l[i].display();
+}
+
+}
+}
+
+
